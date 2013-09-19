@@ -1,7 +1,8 @@
 {
   "name": "de.richter.brackets.jsonlint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JSONLint Extension for Brackets",
+  "title": "JSONLint Extension for Brackets",
   "scripts": {
     "test": "mocha unittests.js"
   },
