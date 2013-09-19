@@ -1,0 +1,28 @@
+{
+  "name": "de.richter.brackets.jsonlint",
+  "version": "0.1.0",
+  "description": "JSONLint Extension for Brackets",
+  "scripts": {
+    "test": "mocha unittests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ingorichter/de.richter.brackets.jsonlint"
+  },
+  "keywords": [
+    "jsonlint",
+    "brackets",
+    "javascript",
+    "linting",
+    "codequality",
+    "inspection"
+  ],
+  "engines": {
+    "brackets": ">=0.30.0"
+  },
+  "author": "Ingo Richter <ingo.richter+github@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ingorichter/de.richter.brackets.jsonlint/issues"
+  }
+}
