@@ -61,6 +61,12 @@ module.exports = function (grunt) {
         }
     });
 
+    // load required tasks
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('time-grunt');
+
     grunt.registerTask('test', [
         'mocha'
     ]);
