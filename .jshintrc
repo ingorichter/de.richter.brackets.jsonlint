@@ -1,0 +1,23 @@
+{
+    "bitwise": true,
+    "browser": true,
+    "curly": true,
+    "devel": true,
+    "eqeqeq": true,
+    "forin": true,
+    "indent": 4,
+    "maxerr": 100,
+    "noempty": true,
+    "nomen": false,
+    "plusplus": false,
+    "strict": true,
+    "trailing": true,
+    "undef": true,
+    "unused": true,
+    "globals" : {
+        "chrome": true,
+        "module": true,
+        "require": true,
+        "waitsFor": true
+    }
+}

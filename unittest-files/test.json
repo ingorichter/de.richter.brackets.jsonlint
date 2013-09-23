@@ -1,0 +1,27 @@
+{
+  "name": "de.richter.brackets.jshint",
+  "version": "0.1.0",
+  "description": "JSHint Extension for Brackets",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha unittests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ingorichter/de.richter.brackets.jshint"
+  },
+  "keywords": [
+    "jshint",
+    "brackets",
+    "javascript",
+    "linting"
+  ],
+  "engines": {
+    "brackets": ">=0.30.0"
+  },
+  "author": "Ingo Richter <ingo.richter+github@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ingorichter/de.richter.brackets.jshint/issues"
+  }
+}
