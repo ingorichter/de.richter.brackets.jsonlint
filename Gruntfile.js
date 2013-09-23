@@ -43,7 +43,9 @@ module.exports = function (grunt) {
                 'Gruntfile.js',
                 '<%= extensionConfig.app %>/main.js',
                 'test/spec/{,*/}*.js',
-                'unittests.js'
+                'unittests.js',
+                'strings.js',
+                'nls/**/*.js'
             ]
         },
         compress: {
