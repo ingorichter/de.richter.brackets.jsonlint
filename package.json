@@ -1,6 +1,6 @@
 {
   "name": "de.richter.brackets.jsonlint",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "JSONLint Extension for Brackets",
   "title": "JSONLint Extension for Brackets",
   "scripts": {
@@ -19,13 +19,13 @@
     "inspection"
   ],
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.4",
     "grunt-mocha": "~0.3.0",
-    "load-grunt-tasks": "~0.1.0",
-    "grunt-contrib-jshint": "~0.6.4",
+    "load-grunt-tasks": "~0.2.0",
+    "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-compress": "~0.5.2",
-    "time-grunt": "~0.1.1"
+    "grunt-contrib-compress": "~0.7.0",
+    "time-grunt": "~0.3.1"
   },
   "engines": {
     "brackets": ">=0.30.0"

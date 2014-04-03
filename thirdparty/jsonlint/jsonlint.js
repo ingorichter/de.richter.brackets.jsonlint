@@ -1,504 +1,432 @@
-(function( glob, undefined ) {
+/* Jison generated parser */
+var jsonlint = (function(){
+var parser = {trace: function trace() { },
+yy: {},
+symbols_: {"error":2,"JSONString":3,"STRING":4,"JSONNumber":5,"NUMBER":6,"JSONNullLiteral":7,"NULL":8,"JSONBooleanLiteral":9,"TRUE":10,"FALSE":11,"JSONText":12,"JSONValue":13,"EOF":14,"JSONObject":15,"JSONArray":16,"{":17,"}":18,"JSONMemberList":19,"JSONMember":20,":":21,",":22,"[":23,"]":24,"JSONElementList":25,"$accept":0,"$end":1},
+terminals_: {2:"error",4:"STRING",6:"NUMBER",8:"NULL",10:"TRUE",11:"FALSE",14:"EOF",17:"{",18:"}",21:":",22:",",23:"[",24:"]"},
+productions_: [0,[3,1],[5,1],[7,1],[9,1],[9,1],[12,2],[13,1],[13,1],[13,1],[13,1],[13,1],[13,1],[15,2],[15,3],[20,3],[19,1],[19,3],[16,2],[16,3],[25,1],[25,3]],
+performAction: function anonymous(yytext,yyleng,yylineno,yy,yystate,$$,_$) {
 
-var rnumber = /[0-9]/,
-	rnewline = /(\r\n|\r|\n)/,
-	revidence = /\r\n|\r|\n/,
-	rwhitespace = /(\s|\t)/,
-	rvalidsolidus = /\\("|\\|\/|b|f|n|r|t|u[0-9]{4})/,
-	rE = /^(\-|\+)?[0-9]/;
-
-
-// Leeeeeeerrrrroooyy Jennkkkiiinnnss
-function JSONLint( json, options ) {
-	var self = this;
-
-	if ( ! ( self instanceof JSONLint ) ) {
-		return new JSONLint( json, options );
-	}
-
-	// Argument handling
-	self.json = json || '';
-	self.options = options || {};
-	self.lower = self.json.toLowerCase();
-
-	// Allow comments by default
-	if ( ! self.options.hasOwnProperty( 'comments' ) ) {
-		self.options.comments = true;
-	}
-
-	// Internals
-	self.c = '';
-	self.i = -1;
-	self.length = self.json.length;
-	self.line = 1;
-	self.character = 0;
-	self._evidence = self.json.split( revidence );
-	self.endblock = '';
-	self.commabreak = false;
-
-	try {
-		self.render();
-	} catch ( e ) {
-		if ( typeof e != 'string' ) {
-			throw e;
-		}
-		self.error = e;
-		self.setEvidence();
-	}
+var $0 = $$.length - 1;
+switch (yystate) {
+case 1: // replace escaped characters with actual character
+          this.$ = yytext.replace(/\\(\\|")/g, "$"+"1")
+                     .replace(/\\n/g,'\n')
+                     .replace(/\\r/g,'\r')
+                     .replace(/\\t/g,'\t')
+                     .replace(/\\v/g,'\v')
+                     .replace(/\\f/g,'\f')
+                     .replace(/\\b/g,'\b');
+        
+break;
+case 2:this.$ = Number(yytext);
+break;
+case 3:this.$ = null;
+break;
+case 4:this.$ = true;
+break;
+case 5:this.$ = false;
+break;
+case 6:return this.$ = $$[$0-1];
+break;
+case 13:this.$ = {};
+break;
+case 14:this.$ = $$[$0-1];
+break;
+case 15:this.$ = [$$[$0-2], $$[$0]];
+break;
+case 16:this.$ = {}; this.$[$$[$0][0]] = $$[$0][1];
+break;
+case 17:this.$ = $$[$0-2]; $$[$0-2][$$[$0][0]] = $$[$0][1];
+break;
+case 18:this.$ = [];
+break;
+case 19:this.$ = $$[$0-1];
+break;
+case 20:this.$ = [$$[$0]];
+break;
+case 21:this.$ = $$[$0-2]; $$[$0-2].push($$[$0]);
+break;
 }
+},
+table: [{3:5,4:[1,12],5:6,6:[1,13],7:3,8:[1,9],9:4,10:[1,10],11:[1,11],12:1,13:2,15:7,16:8,17:[1,14],23:[1,15]},{1:[3]},{14:[1,16]},{14:[2,7],18:[2,7],22:[2,7],24:[2,7]},{14:[2,8],18:[2,8],22:[2,8],24:[2,8]},{14:[2,9],18:[2,9],22:[2,9],24:[2,9]},{14:[2,10],18:[2,10],22:[2,10],24:[2,10]},{14:[2,11],18:[2,11],22:[2,11],24:[2,11]},{14:[2,12],18:[2,12],22:[2,12],24:[2,12]},{14:[2,3],18:[2,3],22:[2,3],24:[2,3]},{14:[2,4],18:[2,4],22:[2,4],24:[2,4]},{14:[2,5],18:[2,5],22:[2,5],24:[2,5]},{14:[2,1],18:[2,1],21:[2,1],22:[2,1],24:[2,1]},{14:[2,2],18:[2,2],22:[2,2],24:[2,2]},{3:20,4:[1,12],18:[1,17],19:18,20:19},{3:5,4:[1,12],5:6,6:[1,13],7:3,8:[1,9],9:4,10:[1,10],11:[1,11],13:23,15:7,16:8,17:[1,14],23:[1,15],24:[1,21],25:22},{1:[2,6]},{14:[2,13],18:[2,13],22:[2,13],24:[2,13]},{18:[1,24],22:[1,25]},{18:[2,16],22:[2,16]},{21:[1,26]},{14:[2,18],18:[2,18],22:[2,18],24:[2,18]},{22:[1,28],24:[1,27]},{22:[2,20],24:[2,20]},{14:[2,14],18:[2,14],22:[2,14],24:[2,14]},{3:20,4:[1,12],20:29},{3:5,4:[1,12],5:6,6:[1,13],7:3,8:[1,9],9:4,10:[1,10],11:[1,11],13:30,15:7,16:8,17:[1,14],23:[1,15]},{14:[2,19],18:[2,19],22:[2,19],24:[2,19]},{3:5,4:[1,12],5:6,6:[1,13],7:3,8:[1,9],9:4,10:[1,10],11:[1,11],13:31,15:7,16:8,17:[1,14],23:[1,15]},{18:[2,17],22:[2,17]},{18:[2,15],22:[2,15]},{22:[2,21],24:[2,21]}],
+defaultActions: {16:[2,6]},
+parseError: function parseError(str, hash) {
+    throw new Error(str);
+},
+parse: function parse(input) {
+    var self = this,
+        stack = [0],
+        vstack = [null], // semantic value stack
+        lstack = [], // location stack
+        table = this.table,
+        yytext = '',
+        yylineno = 0,
+        yyleng = 0,
+        recovering = 0,
+        TERROR = 2,
+        EOF = 1;
 
+    //this.reductionCount = this.shiftCount = 0;
 
-// Meta (Please change contact info for republishing with changes)
-JSONLint.contact = "Corey Hart (corey@codenothing.com)";
-JSONLint.version = '0.1.1';
+    this.lexer.setInput(input);
+    this.lexer.yy = this.yy;
+    this.yy.lexer = this.lexer;
+    if (typeof this.lexer.yylloc == 'undefined')
+        this.lexer.yylloc = {};
+    var yyloc = this.lexer.yylloc;
+    lstack.push(yyloc);
 
+    if (typeof this.yy.parseError === 'function')
+        this.parseError = this.yy.parseError;
 
-// Methods
-JSONLint.prototype = {
+    function popStack (n) {
+        stack.length = stack.length - 2*n;
+        vstack.length = vstack.length - n;
+        lstack.length = lstack.length - n;
+    }
 
-	// Rendering Start
-	render: function(){
-		var self = this, peek = '', content = false;
+    function lex() {
+        var token;
+        token = self.lexer.lex() || 1; // $end = 1
+        // if token isn't its numeric value, convert
+        if (typeof token !== 'number') {
+            token = self.symbols_[token] || token;
+        }
+        return token;
+    }
 
-		for ( ; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
+    var symbol, preErrorSymbol, state, action, a, r, yyval={},p,len,newState, expected;
+    while (true) {
+        // retreive state number from top of stack
+        state = stack[stack.length-1];
 
-			if ( self.options.comments && self.c == '/' ) {
-				peek = self.json[ self.i + 1 ];
-				if ( peek == '*' ) {
-					self.multicomment();
-				}
-				else if ( peek == '/' ) {
-					self.comment();
-				}
-				else {
-					throw "Unknown character '/', maybe a comment?";
-				}
-			}
-			else if ( rnewline.exec( self.c ) ) {
-				self.line++;
-				self.character = 0;
-			}
-			else if ( rwhitespace.exec( self.c ) ) {
-				continue;
-			}
-			else if ( content ) {
-				throw "Unknown character '" + self.c + "', expecting end of file.";
-			}
-			else if ( self.c == '[' ) {
-				content = true;
-				self.array();
-			}
-			else if ( self.c == '{' ) {
-				content = true;
-				self.object();
-			}
-			else {
-				throw "Unknown character '" + self.c + "', expecting opening block '{' or '[', or maybe a comment";
-			}
-		}
+        // use default actions if available
+        if (this.defaultActions[state]) {
+            action = this.defaultActions[state];
+        } else {
+            if (symbol == null)
+                symbol = lex();
+            // read action for current state and first input
+            action = table[state] && table[state][symbol];
+        }
 
-		// Check for pure whitespace
-		if ( ! content ) {
-			throw "Invalid JSON, no content.";
-		}
-	},
+        // handle parse error
+        _handle_error:
+        if (typeof action === 'undefined' || !action.length || !action[0]) {
 
-	// Multi line comment
-	multicomment: function(){
-		var self = this;
+            if (!recovering) {
+                // Report error
+                expected = [];
+                for (p in table[state]) if (this.terminals_[p] && p > 2) {
+                    expected.push("'"+this.terminals_[p]+"'");
+                }
+                var errStr = '';
+                if (this.lexer.showPosition) {
+                    errStr = 'Parse error on line '+(yylineno+1)+":\n"+this.lexer.showPosition()+"\nExpecting "+expected.join(', ') + ", got '" + this.terminals_[symbol]+ "'";
+                } else {
+                    errStr = 'Parse error on line '+(yylineno+1)+": Unexpected " +
+                                  (symbol == 1 /*EOF*/ ? "end of input" :
+                                              ("'"+(this.terminals_[symbol] || symbol)+"'"));
+                }
+                this.parseError(errStr,
+                    {text: this.lexer.match, token: this.terminals_[symbol] || symbol, line: this.lexer.yylineno, loc: yyloc, expected: expected});
+            }
 
-		for ( ; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
+            // just recovered from another error
+            if (recovering == 3) {
+                if (symbol == EOF) {
+                    throw new Error(errStr || 'Parsing halted.');
+                }
 
-			if ( self.c == "*" && self.json[ self.i + 1 ] == "/" ) {
-				self.i++;
-				self.character++;
-				break;
-			}
-			else if ( rnewline.exec( self.c ) ) {
-				self.line++;
-				self.character = 0;
-			}
-		}
-	},
+                // discard current lookahead and grab another
+                yyleng = this.lexer.yyleng;
+                yytext = this.lexer.yytext;
+                yylineno = this.lexer.yylineno;
+                yyloc = this.lexer.yylloc;
+                symbol = lex();
+            }
 
-	// Single line comment
-	comment: function(){
-		var self = this;
+            // try to recover from error
+            while (1) {
+                // check for error recovery rule in this state
+                if ((TERROR.toString()) in table[state]) {
+                    break;
+                }
+                if (state == 0) {
+                    throw new Error(errStr || 'Parsing halted.');
+                }
+                popStack(1);
+                state = stack[stack.length-1];
+            }
 
-		for ( ; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
+            preErrorSymbol = symbol; // save the lookahead token
+            symbol = TERROR;         // insert generic error symbol as new lookahead
+            state = stack[stack.length-1];
+            action = table[state] && table[state][TERROR];
+            recovering = 3; // allow 3 real symbols to be shifted before reporting a new error
+        }
 
-			if ( rnewline.exec( self.c ) ) {
-				self.line++;
-				self.character = 0;
-				break;
-			}
-		}
-	},
+        // this shouldn't happen, unless resolve defaults are off
+        if (action[0] instanceof Array && action.length > 1) {
+            throw new Error('Parse Error: multiple actions possible at state: '+state+', token: '+symbol);
+        }
 
-	// Array Block
-	array: function(){
-		// Keep reference of current endblock
-		var self = this,
-			_endblock = self.endblock,
-			_commabreak = self.commabreak,
-			ended = false;
+        switch (action[0]) {
 
-		self.endblock = ']';
-		self.commabreak = false;
-		while ( ( ended = self.value() ) !== true && self.i < self.length ) {
-			// Do nothing, just wait for array values to finish
-		}
+            case 1: // shift
+                //this.shiftCount++;
 
-		if ( ! ended ) {
-			throw "EOF Error. Expecting closing ']'";
-		}
+                stack.push(symbol);
+                vstack.push(this.lexer.yytext);
+                lstack.push(this.lexer.yylloc);
+                stack.push(action[1]); // push state
+                symbol = null;
+                if (!preErrorSymbol) { // normal execution/no error
+                    yyleng = this.lexer.yyleng;
+                    yytext = this.lexer.yytext;
+                    yylineno = this.lexer.yylineno;
+                    yyloc = this.lexer.yylloc;
+                    if (recovering > 0)
+                        recovering--;
+                } else { // error just occurred, resume old lookahead f/ before error
+                    symbol = preErrorSymbol;
+                    preErrorSymbol = null;
+                }
+                break;
 
-		// Reset previous endblock
-		self.endblock = _endblock;
-		self.commabreak = _commabreak;
-	},
+            case 2: // reduce
+                //this.reductionCount++;
 
-	// Object Block
-	object: function(){
-		// Keep reference of current endblock
-		var self = this,
-			_endblock = self.endblock,
-			_commabreak = self.commabreak,
-			found = false, peek = '', empty = true;
+                len = this.productions_[action[1]][1];
 
-		self.endblock = '}';
-		self.commabreak = false;
-		for ( ; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
+                // perform semantic action
+                yyval.$ = vstack[vstack.length-len]; // default to $$ = $1
+                // default location, uses first token for firsts, last for lasts
+                yyval._$ = {
+                    first_line: lstack[lstack.length-(len||1)].first_line,
+                    last_line: lstack[lstack.length-1].last_line,
+                    first_column: lstack[lstack.length-(len||1)].first_column,
+                    last_column: lstack[lstack.length-1].last_column
+                };
+                r = this.performAction.call(yyval, yytext, yyleng, yylineno, this.yy, action[1], vstack, lstack);
 
-			if ( self.options.comments && self.c == '/' ) {
-				peek = self.json[ self.i + 1 ];
-				if ( peek == '*' ) {
-					self.multicomment();
-				}
-				else if ( peek == '/' ) {
-					self.comment();
-				}
-				else {
-					throw "Unknown character '/', maybe a comment?";
-				}
-			}
-			else if ( rnewline.exec( self.c ) ) {
-				self.line++;
-				self.character = 0;
-			}
-			else if ( rwhitespace.exec( self.c ) ) {
-				continue;
-			}
-			else if ( self.c == '"' ) {
-				empty = false;
-				if ( self.key() === true ) {
-					// Reset old endblock
-					self.endblock = _endblock;
-					self.commabreak = _commabreak;
-					found = true;
-					break;
-				}
-			}
-			else if ( empty && self.c == '}' ) {
-				self.endblock = _endblock;
-				self.commabreak = _commabreak;
-				found = true;
-				break;
-			}
-			else {
-				throw "Unknown Character '" + self.c + "', expecting a string for key statement.";
-			}
-		}
+                if (typeof r !== 'undefined') {
+                    return r;
+                }
 
-		if ( ! found ) {
-			throw "EOF Error, expecting closing '}'.";
-		}
-	},
+                // pop off stack
+                if (len) {
+                    stack = stack.slice(0,-1*len*2);
+                    vstack = vstack.slice(0, -1*len);
+                    lstack = lstack.slice(0, -1*len);
+                }
 
-	// Key Statement
-	key: function(){
-		var self = this;
-		self.string();
+                stack.push(this.productions_[action[1]][0]);    // push nonterminal (reduce)
+                vstack.push(yyval.$);
+                lstack.push(yyval._$);
+                // goto new state = table[STATE][NONTERMINAL]
+                newState = table[stack[stack.length-2]][stack[stack.length-1]];
+                stack.push(newState);
+                break;
 
-		for ( var peek = ''; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
+            case 3: // accept
+                return true;
+        }
 
-			if ( self.options.comments && self.c == '/' ) {
-				peek = self.json[ self.i + 1 ];
-				if ( peek == '*' ) {
-					self.multicomment();
-				}
-				else if ( peek == '/' ) {
-					self.comment();
-				}
-				else {
-					throw "Unknown character '/', maybe a comment?";
-				}
-			}
-			else if ( rnewline.exec( self.c ) ) {
-				self.line++;
-				self.character = 0;
-			}
-			else if ( rwhitespace.exec( self.c ) ) {
-				continue;
-			}
-			else if ( self.c == ":" ) {
-				return self.value();
-			}
-			else {
-				throw "Unknown Character '" + self.c + "', expecting a semicolon.";
-			}
-		}
-	},
+    }
 
-	// Value statement
-	value: function(){
-		var self = this, peek = '';
+    return true;
+}};
+/* Jison generated lexer */
+var lexer = (function(){
+var lexer = ({EOF:1,
+parseError:function parseError(str, hash) {
+        if (this.yy.parseError) {
+            this.yy.parseError(str, hash);
+        } else {
+            throw new Error(str);
+        }
+    },
+setInput:function (input) {
+        this._input = input;
+        this._more = this._less = this.done = false;
+        this.yylineno = this.yyleng = 0;
+        this.yytext = this.matched = this.match = '';
+        this.conditionStack = ['INITIAL'];
+        this.yylloc = {first_line:1,first_column:0,last_line:1,last_column:0};
+        return this;
+    },
+input:function () {
+        var ch = this._input[0];
+        this.yytext+=ch;
+        this.yyleng++;
+        this.match+=ch;
+        this.matched+=ch;
+        var lines = ch.match(/\n/);
+        if (lines) this.yylineno++;
+        this._input = this._input.slice(1);
+        return ch;
+    },
+unput:function (ch) {
+        this._input = ch + this._input;
+        return this;
+    },
+more:function () {
+        this._more = true;
+        return this;
+    },
+less:function (n) {
+        this._input = this.match.slice(n) + this._input;
+    },
+pastInput:function () {
+        var past = this.matched.substr(0, this.matched.length - this.match.length);
+        return (past.length > 20 ? '...':'') + past.substr(-20).replace(/\n/g, "");
+    },
+upcomingInput:function () {
+        var next = this.match;
+        if (next.length < 20) {
+            next += this._input.substr(0, 20-next.length);
+        }
+        return (next.substr(0,20)+(next.length > 20 ? '...':'')).replace(/\n/g, "");
+    },
+showPosition:function () {
+        var pre = this.pastInput();
+        var c = new Array(pre.length + 1).join("-");
+        return pre + this.upcomingInput() + "\n" + c+"^";
+    },
+next:function () {
+        if (this.done) {
+            return this.EOF;
+        }
+        if (!this._input) this.done = true;
 
-		for ( ; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
+        var token,
+            match,
+            tempMatch,
+            index,
+            col,
+            lines;
+        if (!this._more) {
+            this.yytext = '';
+            this.match = '';
+        }
+        var rules = this._currentRules();
+        for (var i=0;i < rules.length; i++) {
+            tempMatch = this._input.match(this.rules[rules[i]]);
+            if (tempMatch && (!match || tempMatch[0].length > match[0].length)) {
+                match = tempMatch;
+                index = i;
+                if (!this.options.flex) break;
+            }
+        }
+        if (match) {
+            lines = match[0].match(/\n.*/g);
+            if (lines) this.yylineno += lines.length;
+            this.yylloc = {first_line: this.yylloc.last_line,
+                           last_line: this.yylineno+1,
+                           first_column: this.yylloc.last_column,
+                           last_column: lines ? lines[lines.length-1].length-1 : this.yylloc.last_column + match[0].length}
+            this.yytext += match[0];
+            this.match += match[0];
+            this.yyleng = this.yytext.length;
+            this._more = false;
+            this._input = this._input.slice(match[0].length);
+            this.matched += match[0];
+            token = this.performAction.call(this, this.yy, this, rules[index],this.conditionStack[this.conditionStack.length-1]);
+            if (this.done && this._input) this.done = false;
+            if (token) return token;
+            else return;
+        }
+        if (this._input === "") {
+            return this.EOF;
+        } else {
+            this.parseError('Lexical error on line '+(this.yylineno+1)+'. Unrecognized text.\n'+this.showPosition(), 
+                    {text: "", token: null, line: this.yylineno});
+        }
+    },
+lex:function lex() {
+        var r = this.next();
+        if (typeof r !== 'undefined') {
+            return r;
+        } else {
+            return this.lex();
+        }
+    },
+begin:function begin(condition) {
+        this.conditionStack.push(condition);
+    },
+popState:function popState() {
+        return this.conditionStack.pop();
+    },
+_currentRules:function _currentRules() {
+        return this.conditions[this.conditionStack[this.conditionStack.length-1]].rules;
+    },
+topState:function () {
+        return this.conditionStack[this.conditionStack.length-2];
+    },
+pushState:function begin(condition) {
+        this.begin(condition);
+    }});
+lexer.options = {};
+lexer.performAction = function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 
-			if ( self.options.comments && self.c == '/' ) {
-				peek = self.json[ self.i + 1 ];
-				if ( peek == '*' ) {
-					self.multicomment();
-				}
-				else if ( peek == '/' ) {
-					self.comment();
-				}
-				else {
-					throw "Unknown character '/', maybe a comment?";
-				}
-			}
-			else if ( rnewline.exec( self.c ) ) {
-				self.line++;
-				self.character = 0;
-			}
-			else if ( rwhitespace.exec( self.c ) ) {
-				continue;
-			}
-			else if ( self.c == '{' ) {
-				self.object();
-				return self.endval();
-			}
-			else if ( self.c == '[' ) {
-				self.array();
-				return self.endval();
-			}
-			else if ( self.c == '"' ) {
-				self.string();
-				return self.endval();
-			}
-			else if ( self.json.indexOf( 'true', self.i ) === self.i ) {
-				self.i += 3;
-				self.character += 3;
-				return self.endval();
-			}
-			else if ( self.json.indexOf( 'false', self.i ) === self.i ) {
-				self.i += 4;
-				self.character += 4;
-				return self.endval();
-			}
-			else if ( self.json.indexOf( 'null', self.i ) === self.i ) {
-				self.i += 3;
-				self.character += 3;
-				return self.endval();
-			}
-			else if ( self.c == '-' || rnumber.exec( self.c ) ) {
-				return self.numeric();
-			}
-			else if ( self.c == ']' && self.endblock == ']' ) {
-				if ( self.commabreak ) {
-					throw "Unexpected End Of Array Error. Expecting a value statement.";
-				}
-				return true;
-			}
-			else {
-				throw "Unknown Character '" + self.c + "', expecting a value.";
-			}
-		}
-	},
-
-	// String statement
-	string: function(){
-		var self = this, found = false, m;
-
-		for ( ; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
-
-			if ( self.c == "\\" ) {
-				if ( ( m = rvalidsolidus.exec( self.json.substr( self.i ) ) ) && m.index === 0 ) {
-					self.i += m[ 1 ].length;
-					self.character += m[ 1 ].length;
-				}
-				else {
-					throw "Invalid Reverse Solidus '\\' declaration.";
-				}
-			}
-			else if ( rnewline.exec( self.c ) ) {
-				self.line++;
-				self.character = 0;
-			}
-			else if ( self.c == '"' ) {
-				found = true;
-				break;
-			}
-		}
-
-		// Make sure close string is found
-		if ( ! found ) {
-			throw "EOF: No close string '\"' found.";
-		}
-	},
-
-	// Numeric Value
-	numeric: function(){
-		var self = this,
-			negative = true,
-			decimal = null,
-			e = null,
-			peek = '';
-
-		// We need to jump back a character to catch the whole number
-		self.i--;
-		self.character--;
-		for ( ; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
-
-			// Handle initial negative sign
-			if ( negative ) {
-				negative = false;
-				if ( self.c == '-' ) {
-					if ( ! rnumber.exec( self.json[ self.i + 1 ] ) ) {
-						throw "Unknown Character '" + self.c + "' following a negative, expecting a numeric value.";
-					}
-					continue;
-				}
-			}
-
-			// Only a single decimal is allowed in a numeric value
-			if ( decimal && self.c == '.' ) {
-				decimal = false;
-				e = true;
-				continue;
-			}
-			// Only a single e notation is allowed in a numeric value
-			else if ( e && self.c.toLowerCase() == 'e' ) {
-				e = false;
-				negative = true;
-				if ( rE.exec( self.json.substr( self.i + 1, 2 ) ) ) {
-					self.character++;
-					self.i++;
-				}
-				else {
-					self.character++;
-					throw "Unknown Character '" + self.json[ self.i + 1 ] + "' following e notation, expecting a numeric value.";
-				}
-			}
-			// Normal Digit
-			else if ( rnumber.exec( self.c ) ) {
-				if ( decimal === null ) {
-					decimal = true;
-				}
-			}
-			// Assume end of number, and allow endval to handle it
-			else {
-				// Jump back a character to include the current one
-				self.i--;
-				self.character--;
-				return self.endval();
-			}
-		}
-	},
-
-	// Ending a value statement
-	endval: function(){
-		var self = this, peek = '';
-		self.commabreak = false;
-
-		for ( ; ++self.i < self.length; ) {
-			self.c = self.json[ self.i ];
-			self.character++;
-
-			if ( self.options.comments && self.c == '/' ) {
-				peek = self.json[ self.i + 1 ];
-				if ( peek == '*' ) {
-					self.multicomment();
-				}
-				else if ( peek == '/' ) {
-					self.comment();
-				}
-				else {
-					throw "Unknown character '/', maybe a comment?";
-				}
-			}
-			else if ( rnewline.exec( self.c ) ) {
-				self.line++;
-				self.character = 0;
-			}
-			else if ( rwhitespace.exec( self.c ) ) {
-				continue;
-			}
-			else if ( self.c == ',' ) {
-				self.commabreak = true;
-				break;
-			}
-			else if ( self.c == self.endblock ) {
-				return true;
-			}
-			else {
-				throw "Unknown Character '" + self.c + "', expecting a comma or a closing '" + self.endblock + "'";
-			}
-		}
-	},
-
-	// Expose line of the error
-	setEvidence: function(){
-		var self = this, start = self.line - 5, end = start + 8, evidence = '';
-
-		// Min start
-		if ( start < 0 ) {
-			start = 0;
-			end = 8;
-		}
-
-		// Max end
-		if ( end >= self._evidence.length ) {
-			end = self._evidence.length;
-		}
-
-		// Evidence display
-		for ( ; start < end; start++ ) {
-			evidence += ( start === ( self.line - 1 ) ? "-> " : "   " ) +
-				( start + 1 ) + '| ' +
-				self._evidence[ start ] + "\n";
-		}
-
-		// Set the evidence display
-		self.evidence = evidence;
-	}
+var YYSTATE=YY_START
+switch($avoiding_name_collisions) {
+case 0:/* skip whitespace */
+break;
+case 1:return 6
+break;
+case 2:yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2); return 4
+break;
+case 3:return 17
+break;
+case 4:return 18
+break;
+case 5:return 23
+break;
+case 6:return 24
+break;
+case 7:return 22
+break;
+case 8:return 21
+break;
+case 9:return 10
+break;
+case 10:return 11
+break;
+case 11:return 8
+break;
+case 12:return 14
+break;
+case 13:return 'INVALID'
+break;
+}
 };
+lexer.rules = [/^(?:\s+)/,/^(?:(-?([0-9]|[1-9][0-9]+))(\.[0-9]+)?([eE][-+]?[0-9]+)?\b)/,/^(?:"(?:\\[\\"bfnrt/]|\\u[a-fA-F0-9]{4}|[^\\\0-\x09\x0a-\x1f"])*")/,/^(?:\{)/,/^(?:\})/,/^(?:\[)/,/^(?:\])/,/^(?:,)/,/^(?::)/,/^(?:true\b)/,/^(?:false\b)/,/^(?:null\b)/,/^(?:$)/,/^(?:.)/];
+lexer.conditions = {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13],"inclusive":true}};
 
 
-// Check for nodejs module system
-if ( typeof exports == 'object' && typeof module == 'object' ) {
-	module.exports = JSONLint;
+;
+return lexer;})()
+parser.lexer = lexer;
+return parser;
+})();
+if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
+exports.parser = jsonlint;
+exports.parse = function () { return jsonlint.parse.apply(jsonlint, arguments); }
+exports.main = function commonjsMain(args) {
+    if (!args[1])
+        throw new Error('Usage: '+args[0]+' FILE');
+    if (typeof process !== 'undefined') {
+        var source = require('fs').readFileSync(require('path').join(process.cwd(), args[1]), "utf8");
+    } else {
+        var cwd = require("file").path(require("file").cwd());
+        var source = cwd.join(args[1]).read({charset: "utf-8"});
+    }
+    return exports.parser.parse(source);
 }
-// In a browser
-else {
-	glob.JSONLint = JSONLint;
+if (typeof module !== 'undefined' && require.main === module) {
+  exports.main(typeof process !== 'undefined' ? process.argv.slice(1) : require("system").args);
 }
-
-})( this );
+}

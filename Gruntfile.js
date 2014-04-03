@@ -8,10 +8,8 @@
 
 module.exports = function (grunt) {
     "use strict";
-    // show elapsed time at the end
-    require('time-grunt')(grunt);
     // load all grunt tasks
-    require('load-grunt-tasks')(grunt);
+    require('load-grunt-tasks')(grunt, {pattern: ['grunt-contrib-*']});
 
     // configurable paths
     var extensionConfig = {
@@ -62,12 +60,6 @@ module.exports = function (grunt) {
             }
         }
     });
-
-    // load required tasks
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-compress');
-    grunt.loadNpmTasks('time-grunt');
 
     grunt.registerTask('test', [
         'mocha'

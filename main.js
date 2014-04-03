@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2012 Adobe Systems Incorporated. All rights reserved.
  *
@@ -23,7 +24,7 @@
 
 /*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, strict:true, undef:true, unused:true, curly:true, browser:true, indent:4, maxerr:100, plusplus:false, devel:true, nomen:false */
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4 */
-/*global define, brackets, JSONLint */
+/*global define, brackets, jsonlint */
 
 /**
  * Provides jsonlint results via the core linting extension point
@@ -32,29 +33,36 @@ define(function (require, exports, module) {
     "use strict";
 
     /* load global
-     * This will pollute the namespace with a JSONLint instance
+     * This will pollute the namespace with a jsonlint instance
      */
     require("thirdparty/jsonlint/jsonlint");
 
     // Load dependent modules
     var CodeInspection = brackets.getModule("language/CodeInspection");
 
+    var re = /(\d+)/;
+
     /**
      * Run jsonlint on the current document. Reports results to the main UI. Displays
      * a gold star when no errors are found.
      */
     function lintOneFile(text, fullPath) {
-        /* no options at the moment */
-        var lintResults = new JSONLint(text, {});
-        if (lintResults.error) {
-            var errors = {
-                // the line numbers are a little bit off...
-                pos:     {line: lintResults.line - 2, ch: lintResults.character},
-                message: lintResults.error,
-                type:    CodeInspection.Type.ERROR
-            };
+        try {
+            jsonlint.parse(text);
+        } catch (e) {
+//            ["Parse error on line 347:", "...      "newFeatures" [            {    ", "-----------------------^", "Expecting 'EOF', '}', ':', ',', ']', got '['"]
+            var parts = e.message.split('\n'),
+                line = re.exec(parts[0]);
 
-            return {errors: [errors]};
+            if (line) {
+                var error = {
+                    pos:     {line: line[0] - 1, ch: parts[2].length - 1},
+                    message: parts[3],
+                    type:    CodeInspection.Type.ERROR
+                };
+
+                return {errors: [error]};
+            }
         }
 
         return null;
