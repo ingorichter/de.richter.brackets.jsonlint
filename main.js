@@ -32,45 +32,11 @@
 define(function (require, exports, module) {
     "use strict";
 
-    /* load global
-     * This will pollute the namespace with a jsonlint instance
-     */
-    require("thirdparty/jsonlint/jsonlint");
-
-    // Load dependent modules
     var CodeInspection = brackets.getModule("language/CodeInspection");
+    var jsonlint = require("./jsonlint-main");
 
-    var re = /(\d+)/;
-
-    /**
-     * Run jsonlint on the current document. Reports results to the main UI. Displays
-     * a gold star when no errors are found.
-     */
-    function lintOneFile(text, fullPath) {
-        try {
-            jsonlint.parse(text);
-        } catch (e) {
-//            ["Parse error on line 347:", "...      "newFeatures" [            {    ", "-----------------------^", "Expecting 'EOF', '}', ':', ',', ']', got '['"]
-            var parts = e.message.split('\n'),
-                line = re.exec(parts[0]);
-
-            if (line) {
-                var error = {
-                    pos:     {line: line[0] - 1, ch: parts[2].length - 1},
-                    message: parts[3],
-                    type:    CodeInspection.Type.ERROR
-                };
-
-                return {errors: [error]};
-            }
-        }
-
-        return null;
-    }
-
-    // Register for JSON files
     CodeInspection.register("json", {
         name: "JSONLint",
-        scanFile: lintOneFile
+        scanFile: jsonlint.lintOneFile
     });
 });

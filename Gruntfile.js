@@ -54,7 +54,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '',
-                    src: ['main.js', 'package.json', 'README.md', 'thirdparty/**'],
+                    src: ['main.js', 'jsonlint-main.js', 'package.json', 'README.md', 'thirdparty/**'],
                     dest: ''
                 }]
             }
